@@ -2,7 +2,7 @@ const sketch = require("./sketch");
 
 const loop = function (world) {
     while (sketch.running()) {
-        // sketch.update(world);
+        sketch.update(world);
         sketch.draw(world);
     }
 };
