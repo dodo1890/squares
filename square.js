@@ -31,7 +31,9 @@ const sqrCollision = function (square1, square2) {
     const { dimensions: d1, velocity: v1 } = square1;
     const { dimensions: d2, velocity: v2 } = square2;
 
-    if (c.checkCollisionRecs(d1, d2)) {
+    const { result } = c.checkCollisionRecs(d1, d2);
+
+    if (result) {
         v1.x = -v1.x;
         v2.x = -v2.x;
     }
