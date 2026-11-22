@@ -24,10 +24,11 @@ const setup = function () {
 const update = function (world) {
     if (c.horizontalDetection(world.square, world.screen.WIDTH))
         world.square.velocity.x = -world.square.velocity.x;
-    console.log(world.square.dimensions.x);
+
+    if (c.verticalDetection(world.square, world.screen.HEIGHT))
+        world.square.velocity.y = -world.square.velocity.y;
 
     s.move(world.square);
-    // console.log(world.square.dimensions.x);
 };
 
 const draw = function (world) {
