@@ -8,8 +8,6 @@ const verticalEdgeDetection = function ({ dimensions }, bottomEdge) {
     return squareBottom > bottomEdge || dimensions.y < 0;
 };
 
-const collisionType = function (rec1, rec2) {};
-
 const checkCollisionRecs = function (rec1, rec2) {
     const { x: x1, y: y1, width: width1, height: height1 } = rec1;
     const { x: x2, y: y2, width: width2, height: height2 } = rec2;
@@ -19,19 +17,15 @@ const checkCollisionRecs = function (rec1, rec2) {
     const y1end = y1 + height1;
     const y2end = y2 + height2;
 
-    const isCollidingHorizontally = x2 <= x1end && x2end >= x1;
+    const isCollidingHorizontally = x2 < x1end && x2end > x1;
 
-    const isCollidingVertically = y2 <= y1end && y2end >= y1;
+    const isCollidingVertically = y2 < y1end && y2end > y1;
 
-    const result = isCollidingHorizontally && isCollidingVertically;
-
-    return { result };
+    return isCollidingHorizontally && isCollidingVertically;
 };
 
 module.exports = {
     horizontalEdgeDetection,
     verticalEdgeDetection,
-    recToRecDetH,
-    recToRecDetV,
     checkCollisionRecs,
 };

@@ -14,7 +14,7 @@ const move = function ({ dimensions, velocity }, dt) {
     dimensions.y += velocity.y * dt;
 };
 
-const ChangeDirectionWRTScreen = function (square, screen) {
+const bounceFromWall = function (square, screen) {
     if (c.horizontalEdgeDetection(square, screen.WIDTH))
         square.velocity.x = -square.velocity.x;
 
@@ -23,25 +23,44 @@ const ChangeDirectionWRTScreen = function (square, screen) {
 };
 
 const update = function (square, screen, dt) {
-    ChangeDirectionWRTScreen(square, screen);
+    bounceFromWall(square, screen);
     move(square, dt);
 };
 
-const sqrCollision = function (square1, square2) {
+const bounceHorizontally = function (v1, v2) {
+    v1.x = -v1.x;
+    v2.x = -v2.x;
+};
+
+const bounceVertically = function (v1, v2) {
+    v1.y = -v1.y;
+    v2.y = -v2.y;
+};
+
+const bounceEachOther = function (square1, square2) {
     const { dimensions: d1, velocity: v1 } = square1;
     const { dimensions: d2, velocity: v2 } = square2;
 
     const { result } = c.checkCollisionRecs(d1, d2);
 
+    const xdiff = Math.abs(d1.x - d2.x);
+    const ydiff = Math.abs(d1.y - d2.y);
+
     if (result) {
-        v1.x = -v1.x;
-        v2.x = -v2.x;
+        if (xdiff > ydiff) {
+            bounceHorizontally(v1, v2);
+        } else if (ydiff > xdiff) {
+            bounceVertically(v1, v2);
+        } else {
+            bounceHorizontally(v1, v2);
+            bounceVertically(v1, v2);
+        }
     }
 };
 
 module.exports = {
     create,
     draw,
-    sqrCollision,
+    bounceEachOther,
     update,
 };

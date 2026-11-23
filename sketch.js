@@ -31,13 +31,13 @@ const setup = function () {
 const update = function (world) {
     const dt = r.GetFrameTime();
 
-    s.sqrCollision(world.square1, world.square2);
-    // s.sqrCollision(world.square1, world.square3);
-    // s.sqrCollision(world.square2, world.square3);
+    s.bounceEachOther(world.square1, world.square2);
+    s.bounceEachOther(world.square1, world.square3);
+    s.bounceEachOther(world.square2, world.square3);
 
     s.update(world.square1, world.screen, dt);
     s.update(world.square2, world.screen, dt);
-    // s.update(world.square3, world.screen, dt);
+    s.update(world.square3, world.screen, dt);
 };
 
 const draw = function (world) {
@@ -45,7 +45,7 @@ const draw = function (world) {
     r.ClearBackground(r.WHITE);
     s.draw(world.square1);
     s.draw(world.square2);
-    // s.draw(world.square3);
+    s.draw(world.square3);
     r.EndDrawing();
 };
 
