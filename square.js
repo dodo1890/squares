@@ -41,12 +41,10 @@ const bounceEachOther = function (square1, square2) {
     const { dimensions: d1, velocity: v1 } = square1;
     const { dimensions: d2, velocity: v2 } = square2;
 
-    const { result } = c.checkCollisionRecs(d1, d2);
-
     const xdiff = Math.abs(d1.x - d2.x);
     const ydiff = Math.abs(d1.y - d2.y);
 
-    if (result) {
+    if (c.checkCollisionRecs(d1, d2)) {
         if (xdiff > ydiff) {
             bounceHorizontally(v1, v2);
         } else if (ydiff > xdiff) {

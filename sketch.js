@@ -11,14 +11,14 @@ const setup = function () {
     const HEIGHT = 500;
     const FPS = 120;
 
-    const square1 = s.create(0, 0, 100, 100, r.RED, { x: 400, y: 400 });
+    const square1 = s.create(0, 0, 30, 30, r.RED, { x: 400, y: 400 });
 
-    const square2 = s.create(400, 100, 100, 100, r.GREEN, {
+    const square2 = s.create(400, 100, 30, 30, r.GREEN, {
         x: 250,
         y: 250,
     });
 
-    const square3 = s.create(600, 200, 100, 100, r.BLUE, { x: 500, y: 500 });
+    const square3 = s.create(600, 200, 30, 30, r.BLUE, { x: 500, y: 500 });
 
     r.SetTraceLogLevel(r.LOG_NONE);
     r.InitWindow(WIDTH, HEIGHT, "SQUARE1");
